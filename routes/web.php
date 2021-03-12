@@ -37,38 +37,6 @@ Route::group(
 
         Route::prefix('admin')->group(function () {
 
-            // //==============================Start Conatct Us============================
-            // Route::namespace ('Admin')->prefix('contactUs')->group(function () {
-            //     Route::get('/', 'ContactUsController@index')->name('contactUs.index');
-            //     Route::post('/store', 'ContactUsController@store')->name('contactUs.store');
-            //     Route::post('/update{id}', 'ContactUsController@update')->name('contactUs.update');
-            //     Route::delete('/destroy{id}', 'ContactUsController@destroy')->name('contactUs.destroy');
-            //     Route::get('/softDelete', 'ContactUsController@softDelete')->name('contactUs.softDelete');
-            //     Route::post('/restore/{id}', 'ContactUsController@restore')->name('contactUs.restore');
-            //     Route::post('/forceDelete/{id}', 'ContactUsController@forceDelete')->name('contactUs.forceDelete');
-
-            // });
-            // // //==============================End Conatct Us============================
-
-
-
-
-
-            // //==============================ProductImgController============================
-            // Route::group(['namespace' => 'Admin'], function () {
-            //     Route::resource('product_img', 'ProductImgController');
-            // });
-            //==============================ProductImgController============================
-
-
-
-
-
-
-
-
-
-
 
             Route::group(['namespace' => 'Admin'], function () {
                 Route::get('product_main_imgs', 'ProductImgController@product_main_imgs')->name('product_main_imgs');
