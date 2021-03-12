@@ -17,6 +17,21 @@
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">{{trans('main_trans.Programname')}}
                     </li>
 
+                    <!-- ADMIN-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#admin-menu">
+                            <div class="pull-left"><i class="fas fa-chalkboard"></i></i><span
+                                    class="right-nav-text">المديرين</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="admin-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('admin.index') }}">كل المديرين </a> </li>
+                            <li> <a href="{{ route('admin.softDelete') }}"> المديرين الغير مفعلين </a> </li>
+
+                        </ul>
+                    </li>
+
                     <!-- CATEGORIES-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#categories-menu">

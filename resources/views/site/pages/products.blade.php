@@ -6,60 +6,88 @@
 
 
 <!-- start layout -->
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000" style="height: 700px">
+            <img src="{{ asset('site/assets/img/gallary1.jpg') }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <p class="phragraph_productslider">
+                    <img class="qutes1" src="img/qutes2.svg" alt="">
 
-<!-- start products slider -->
-<div class="container-fluid">
-    <div class="slider productSlider">
+
+
+                    <img class="qutes2" src="img/qutes2.svg" alt="">
+                </p>
+            </div>
+        </div>
+
+
 
 
         @if ($sliders)
         @foreach ($sliders as $slider)
-
-
-        <p class="phragraph_productslider">
-            <img class="qutes1" src="img/qutes2.svg" alt="">
-            {{ $slider->description }}
-            <img class="qutes2" src="img/qutes2.svg" alt="">
-        </p>
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('admin/img/productslider/'. $slider->image) }}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('admin/img/productslider/'. $slider->image) }}" class="d-block w-100" alt="...">
-                </div>
+        <div class="carousel-item" style="height: 700px">
+            <img src="{{ asset('admin/img/productslider/'. $slider->image) }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <p class="phragraph_productslider">
+                    <img class="qutes1" src="img/qutes2.svg" alt="">
+                    {{ $slider->description }}
+                    <img class="qutes2" src="img/qutes2.svg" alt="">
+                </p>
             </div>
-
-
-
-
-
-
-
-
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"> <i class="fas fa-chevron-left"></i> </span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-
         @endforeach
-
         @endif
 
 
-    </div>
-</div>
-<!-- end products slider -->
 
+
+
+
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<style>
+    .carousel-indicators {
+        margin-bottom: 20px;
+    }
+
+    .carousel-indicators .active {
+        opacity: 1;
+        background-color: burlywood;
+        height: 10px;
+        margin-left: 3px;
+    }
+
+    .phragraph_productslider {
+        position: absolute;
+        z-index: 20;
+        width: 45%;
+        text-align: left;
+        left: 110px;
+        bottom: 20px;
+        direction: ltr;
+        font-size: 20px;
+        color: #2f3548;
+        font-weight: 700;
+    }
+</style>
 
 
 
@@ -71,7 +99,7 @@
         @if ($single_product_imgs_code)
         @foreach ($single_product_imgs_code as $img)
         <div class="col-lg-2 col-md-4 col-sm-6">
-            <img src="{{ asset('admin/img/max/' .$img->max_img ) }}" alt="">
+            <img src="{{ asset('/assets/images/' .$img->max_img ) }}" alt="" style="height: 220px">
         </div>
         @endforeach
 
@@ -157,41 +185,37 @@
 <!-- end detailes -->
 
 
-<!-- start top products -->
-
-<div class="products">
+  <!-- start top products -->
+  <div class="products">
     <div class="container">
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
                 <h1 class="head2">top products</h1>
                 <div class="owl-carousel owl-theme">
 
+                    @foreach ($top_products as $product)
+                        {{-- {{ $product->productImage[0]->tiny_img }} --}}
 
-                    @if ($topproducts)
-                    @foreach ($topproducts as $topproduct)
-                    {{-- {{ $topproduct->productImage[0]->tiny_img }} --}}
-                    <div class="item">
-                        <div class="content-img">
-                            <img src="{{ asset('admin/img/min/' . $topproduct->productImage[0]->tiny_img)  }}" alt="">
+                        <div class="item">
+                            <div class="content-img">
+                                @if ($product && $product->count() > 0)
+                                    <img src="{{ asset('/assets/images/'.$product->productImage[0]->tiny_img) }}" alt="">
+                                @endif
+                            </div>
                         </div>
-                    </div>
-
                     @endforeach
-
-                    @endif
-
-
 
 
 
                 </div>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-lg-1"></div>
         </div>
     </div>
 </div>
 
+<!-- end top products -->
 <!-- end top products -->
 
 

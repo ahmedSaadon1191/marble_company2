@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
 @section('title')
-
+    المديرين
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-عن الشركة الصفحة الرئيسية
+    كل المديرين
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -30,11 +30,9 @@
                         </div>
                     @endif
 
-                    @if ($aboutUs->count() < 2)
-                        <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
-                            اضافة وصف
-                        </button>
-                    @endif
+                    {{-- <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
+                       اضافة وصف
+                    </button> --}}
                     <br><br>
 
                     <div class="table-responsive">
@@ -44,27 +42,23 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>الاسم</th>
+                                <th>الايميل</th>
                                 <th>الصورة</th>
-                                <th>العنوان بالعربي</th>
-                                <th>العنوان بالانجليزية</th>
-                                <th>الوصف بالعربي</th>
-                                <th>الوصف بالانجليزية</th>
                                 <th>الاجرائات</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php $i = 0; ?>
-                            @foreach ($aboutUs as $value)
+                            @foreach ($admin as $value)
                                 <tr>
                                     <?php $i++; ?>
                                     <td>{{ $i }}</td>
-                                    <td>{{ $value->getTranslation('title','ar') }}</td>
-                                    <td>{{ $value->getTranslation('title','en') }}</td>
-                                    <td>{{ $value->getTranslation('descreption','ar') }}</td>
-                                    <td>{{ $value->getTranslation('descreption','en') }}</td>
+                                    <td>{{ $value->name }}</td>
+                                    <td>{{ $value->email }}</td>
 
                                     <td style="height: 50px; width: 50px;">
-                                        <img src="{{ asset('assets/images/'.$value->logo) }}" alt="" style="height: 100px; width:100px">
+                                        <img src="{{ asset('assets/images/'.$value->logo) }}" alt="" style="height: 100px;width:100px">
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
@@ -80,8 +74,8 @@
                                     </td>
                                 </tr>
 
-                              @include('admin.pages.aboutUsHome.edit')
-                              @include('admin.pages.aboutUsHome.delete')
+                              @include('admin.pages.admin.edit')
+                              @include('admin.pages.admin.delete')
 
 
 
@@ -94,7 +88,7 @@
         </div>
 
 
-        @include('admin.pages.aboutUsHome.create')
+        @include('admin.pages.admin.create')
 
     </div>
 

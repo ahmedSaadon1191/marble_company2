@@ -162,7 +162,7 @@
                 e.preventDefault();
 
                 var btnId = $(this).attr('id');
-                alert(btnId);
+                alert("تم الحزف بنجاح قم بتحديث الصفحة");
 
                 if(btnId)
                  {

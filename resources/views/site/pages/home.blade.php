@@ -13,10 +13,10 @@
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    {{-- <img src="{{ asset('assets/images/'.$aboutUs[0]->logo) }}" class="d-block w-100" alt="..."> --}}
+                    <img src="{{ asset('assets/images/'.$aboutUsHomeFirst->logo) }}" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('site/assets/img/imslider.jpg') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('assets/images/'.$aboutUsHomeLast->logo) }}" class="d-block w-100" alt="...">
                 </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
@@ -58,7 +58,7 @@
                         <div class="content-img" style="height: 100%; width:100%;">
 
                             @if ($aboutUsHomeFirst && $aboutUsHomeFirst->count() > 0)
-                            <img src="{{ asset('assets/images/'.$aboutUsHomeFirst->logo) }}" alt="" style="border-radius: 30%">
+                            <img src="{{ asset('site/assets/img/details1.svg') }}" alt="" style="border-radius: 30%">
                             @endif
                         </div>
                     </div>
@@ -89,7 +89,9 @@
 
                             <img class="qutes2" src="{{ asset('site/assets/img/qutes1.svg') }}" alt="">
                         </p>
-                        <button class="but1">explore...</button>
+                        <a href="{{ route('galaries') }}">
+                            <button class="but1">explore...</button>
+                        </a>
                     </div>
 
                 </div>
@@ -114,7 +116,7 @@
                                 <div class="item">
                                     <div class="content-img">
                                         @if ($product && $product->count() > 0)
-                                            <img src="{{ asset('admin/img/'.$product->productImage[0]->tiny_img) }}" alt="">
+                                            <img src="{{ asset('/assets/images/'.$product->productImage[0]->tiny_img) }}" alt="">
                                         @endif
                                     </div>
                                 </div>

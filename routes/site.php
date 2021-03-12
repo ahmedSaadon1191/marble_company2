@@ -31,7 +31,7 @@ Route::group(
     ], function () {
 
         //==============================Welcome============================
-        Route::get('/home', 'site\allController@home')->name('home');
+        Route::get('/', 'site\allController@home')->name('home');
         Route::get('/aboutUs', 'site\allController@aboutUs')->name('aboutUs');
         Route::any('/products/{id}', 'site\allController@products')->name('products');
         //sidebar products name view

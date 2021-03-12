@@ -17,21 +17,24 @@ class allController extends Controller
     {
         $aboutUsHomeFirst = AboutHome::get()->first();
         $aboutUsHomeLast = AboutHome::get()->last();
+        $aboutUs = AboutHome::all();
         $top_products = Product::with('productImage')->where('top_product', 1)->take(5)->get();
+        // return $top_products
         $contactUs = ContactUs::all();
         //    return $contactUs;
         // return Translatable::getLocales();
-        return view('site.pages.home', compact('aboutUsHomeFirst', 'aboutUsHomeLast', 'top_products', 'contactUs'));
+
+        return view('site.pages.home', compact('aboutUsHomeFirst', 'aboutUsHomeLast', 'top_products', 'contactUs','aboutUs'));
     }
 
     public function aboutUs()
     {
         $aboutUs = AboutUs::all();
         $contactUs = ContactUs::all();
-        $topproducts = Product::where('top_product', 1)->get();
+        $top_products = Product::with('productImage')->where('top_product', 1)->take(5)->get();
 
         // return $aboutUs;
-        return view('site.pages.aboutUs', compact('aboutUs', 'contactUs', 'topproducts'));
+        return view('site.pages.aboutUs', compact('aboutUs', 'contactUs', 'top_products'));
     }
 
     public function products($id)
@@ -45,10 +48,10 @@ class allController extends Controller
             $single_product_imgs_code = $singleproduct->productImage;
 
         }
-        $topproducts = Product::where('top_product', 1)->get();
+        $top_products = Product::with('productImage')->where('top_product', 1)->take(5)->get();
         //  return $topproducts = Product::with('productImage')->where('top_product', 1)->take(5)->get();
 
-        return view('site.pages.products', compact('sliders', 'aboutUs', 'contactUs', 'single_product_imgs_code', 'topproducts'));
+        return view('site.pages.products', compact('sliders', 'aboutUs', 'contactUs', 'single_product_imgs_code', 'top_products'));
     }
 
     public function galaries()

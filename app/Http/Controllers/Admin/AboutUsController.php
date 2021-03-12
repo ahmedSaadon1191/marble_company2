@@ -39,13 +39,15 @@ class AboutUsController extends Controller
                     $create->save();
                 }
             DB::commit();
-
-                return redirect()->route('aboutUs.index')->with(['success' => 'تم الاضافة بنجاح']);
+                toastr()->success(trans('messages.success'));
+                return redirect()->route('aboutUs.index');
         } catch (\Throwable $th)
         {
             DB::rollback();
             return $th;
-            return redirect()->route('aboutUs.index')->with(['error' => 'هناك خطاء ما برجاء المحاولة فيما بعد']);
+            session()->flash('Delete_Succesfully');
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->route('aboutUs.index');
         }
     }
 
@@ -57,7 +59,9 @@ class AboutUsController extends Controller
         {
             if (!$data)
             {
-                return redirect()->route('aboutUs.index')->with(['error' => 'هذا العنصر غير موجود']);
+                session()->flash('Delete_Succesfully');
+                toastr()->error(trans('messages.Delete'));
+                return redirect()->route('aboutUs.index');
 
             }else
             {
@@ -75,14 +79,18 @@ class AboutUsController extends Controller
                         $data->update(['logo' => $photo]);
                     }
                 DB::commit();
-                return redirect()->route('aboutUs.index')->with(['success' => 'تم التعديل بنجاح']);
+
+                toastr()->success(trans('messages.success'));
+                return redirect()->route('aboutUs.index');
             }
 
         } catch (\Throwable $th)
         {
             DB::rollback();
             return $th;
-            return redirect()->route('aboutUs.index')->with(['error' => 'هناك خطاء ما برجاء المحاولة فيما بعد']);
+            session()->flash('Delete_Succesfully');
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->route('aboutUs.index');
         }
     }
 
@@ -94,18 +102,24 @@ class AboutUsController extends Controller
         {
             if (!$data)
             {
-                return redirect()->route('aboutUs.index')->with(['error' => 'هذا العنصر غير موجود']);
+                session()->flash('Delete_Succesfully');
+                toastr()->error(trans('messages.Delete'));
+                return redirect()->route('aboutUs.index');
 
             }else
             {
                 $data->delete();
-                return redirect()->route('aboutUs.index')->with(['success' => 'تم مسح البيانات بنجاح']);
+                session()->flash('Delete_Succesfully');
+                toastr()->error(trans('messages.Delete'));
+                return redirect()->route('aboutUs.index');
             }
 
         } catch (\Throwable $th)
         {
             return $th;
-            return redirect()->route('aboutUs.index')->with(['error' => 'هناك خطاء ما برجاء المحاولة فيما بعد']);
+            session()->flash('Delete_Succesfully');
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->route('aboutUs.index');
         }
     }
 
@@ -123,18 +137,23 @@ class AboutUsController extends Controller
         {
             if (!$data)
             {
-                return redirect()->route('aboutUs.index')->with(['error' => 'هذا العنصر غير موجود']);
+                session()->flash('Delete_Succesfully');
+            toastr()->error(trans('messages.Delete'));
+                return redirect()->route('aboutUs.index');
 
             }else
             {
                 $data->restore();
-                return redirect()->route('aboutUs.index')->with(['success' => 'تم استرجاع بنجاح']);
+                toastr()->success(trans('messages.success'));
+                return redirect()->route('aboutUs.index');
             }
 
         } catch (\Throwable $th)
         {
             return $th;
-            return redirect()->route('aboutUs.index')->with(['error' => 'هناك خطاء ما برجاء المحاولة فيما بعد']);
+            session()->flash('Delete_Succesfully');
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->route('aboutUs.index');
         }
     }
 
@@ -146,19 +165,25 @@ class AboutUsController extends Controller
         {
             if (!$data)
             {
-                return redirect()->route('aboutUs.index')->with(['error' => 'هذا العنصر غير موجود']);
+                session()->flash('Delete_Succesfully');
+            toastr()->error(trans('messages.Delete'));
+                return redirect()->route('aboutUs.index');
 
             }else
             {
                 Storage::disk('public')->delete('/assets/images/',$data->logo);
                 $data->forceDelete();
-                return redirect()->route('aboutUs.index')->with(['success' => 'تم استرجاع بنجاح']);
+                session()->flash('Delete_Succesfully');
+                toastr()->error(trans('messages.Delete'));
+                return redirect()->route('aboutUs.index');
             }
 
         } catch (\Throwable $th)
         {
             return $th;
-            return redirect()->route('aboutUs.index')->with(['error' => 'هناك خطاء ما برجاء المحاولة فيما بعد']);
+            session()->flash('Delete_Succesfully');
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->route('aboutUs.index');
         }
     }
 }

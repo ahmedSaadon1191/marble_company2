@@ -72,6 +72,7 @@ Route::group(
 
             Route::group(['namespace' => 'Admin'], function () {
                 Route::get('product_main_imgs', 'ProductImgController@product_main_imgs')->name('product_main_imgs');
+                Route::post('productImg/store', 'ProductImgController@store')->name('productImg.store');
                 Route::get('edit/product_main_imgs/{id}', 'ProductImgController@editproduct_main_imgs')->name('edit_product_main_imgs');
                 Route::any('update/product_main_imgs/{id}', 'ProductImgController@updateproduct_main_imgs')->name('update_product_main_imgs');
                 Route::delete('delete/product/{id}', 'ProductController@deleteAll')->name('deleteAll');
@@ -136,6 +137,7 @@ Route::group(
             Route::post('/forceDelete/{id}','categoriesController@forceDelete')->name('Categories.forceDelete');
         });
         //==============================End  Categories Home============================
+
         //==============================Start Products============================
         Route::namespace ('Admin')->prefix('products')->group(function () {
             Route::get('/', 'ProductController@index')->name('products.index');
@@ -150,6 +152,24 @@ Route::group(
 
         });
         //==============================End Products============================
+
+        //==============================Start Admin============================
+        Route::namespace ('Admin')->prefix('admin')->group(function () {
+            Route::get('/', 'adminsController@index')->name('admin.index');
+            Route::get('/edit/{id}', 'adminsController@edit')->name('admin.edit');
+            Route::PATCH ('/update{id}', 'adminsController@update')->name('admin.update');
+            Route::delete('/destroy{id}', 'adminsController@destroy')->name('admin.destroy');
+            Route::get('/softDelete', 'adminsController@softDelete')->name('admin.softDelete');
+            Route::post('/restore/{id}', 'adminsController@restore')->name('admin.restore');
+
+            Route::get('/profile', 'adminsController@profile')->name('admin.profile');
+            Route::post('/profile', 'adminsController@profileUpdate')->name('admin.profile.update');
+
+            Route::get('/setting', 'adminsController@setting')->name('admin.setting');
+            Route::post('/changePassword', 'adminsController@changePasswordUpdate')->name('admin.changePassword.update');
+
+        });
+        //==============================End Admin============================
 
             Route::prefix('slider')->group(function () {
                 Route::get('/product', 'ProslidController@index')->name('pro_slider');
